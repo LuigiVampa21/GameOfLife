@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 // // const gameOfLife = document.querySelector('.gameOfLife');
 // // let cellsArray = [[], [], [], [], [], [], [], [], [], []];
@@ -50,6 +50,14 @@
 
 // let birthArray = [cell10,cell12,cell20,cell21,cell22,cell55,cell56]
 
+// function giveBirth(cell) {
+//   cell.style.background = "white";
+// }
+
+// function giveDeath(cell) {
+//   cell.style.background = "black";
+// }
+
 // for(let b = 0; b < birthArray.length; b++){
 //   giveBirth(birthArray[b])
 // }
@@ -60,14 +68,6 @@
 //   }
 
 // console.log(isMyCellWhite(cell1));
-
-// function giveBirth(cell) {
-//   cell.style.background = 'white';
-// }
-
-// function giveDeath(cell) {
-//   cell.style.background = 'black';
-// }
 
 // gameOfLife.addEventListener('click', (e) => {
 //   if (e.target.style.background === 'black') {
@@ -182,27 +182,101 @@
 
 // -------------------------------------------------------------------------------------------------
 
-const gameOfLife = document.querySelector('.gameOfLife');
+const gameOfLife = document.querySelector(".gameOfLife");
+
+// let arrayCells = [[], [], [], [], [], [], [], [], [], []];
+// let x = 0;
+// for (let i = 0; i < arrayCells.length; i++) {
+//   x += 1;
+//   for (let j = 0; j < arrayCells.length; j++) {
+//     const cell = document.createElement("div");
+//     gameOfLife.appendChild(cell);
+//     cell.style.width = "35px";
+//     cell.style.height = "35px";
+//     cell.style.border = "1px solid blue";
+//     if (j == 1 || j == 7) {
+//       arrayCells[i].push(1);
+//     } else if (j == 4 && (x == 5 || x == 4)) {
+//       arrayCells[i].push(1);
+//     } else {
+//       arrayCells[i].push(0);
+//     }
+//   }
+// }
 
 let arrayCells = [[], [], [], [], [], [], [], [], [], []];
 let x = 0;
 for (let i = 0; i < arrayCells.length; i++) {
   x += 1;
   for (let j = 0; j < arrayCells.length; j++) {
-    const cell = document.createElement('div');
+    const cell = document.createElement("div");
     gameOfLife.appendChild(cell);
-    cell.style.width = '35px';
-    cell.style.height = '35px';
-    cell.style.border = '1px solid white';
-    if (j == 1 || j == 7) {
-      arrayCells[i].push(1);
-    } else if (j == 4 && (x == 5 || x == 4)) {
-      arrayCells[i].push(1);
-    } else {
-      arrayCells[i].push(0);
-    }
+    cell.style.width = "35px";
+    cell.style.height = "35px";
+    cell.style.border = "1px solid blue";
+
+    // ----------------------------------------------------------------------------------
+    // if (j == 1 || j == 7) {
+    //   arrayCells[i].push(1);
+    // } else if (j == 4 && (x == 5 || x == 4)) {
+    //   arrayCells[i].push(1);
+    // } else {
+    arrayCells[i].push(0);
+    // ----------------------------------------------------------------------------
   }
 }
+// }
+
+// for (let i = 0; i < arrayCells.length; i++){
+//   for (let j = 0; arrayCells[i].length; j++){
+
+//   }
+// }
+// il faut pouvoir clicker sur un element du dom et que ca change sa valeur dans le tableau
+
+let cells = document.querySelectorAll("div");
+let c = 0;
+for (let i = 0; i < arrayCells.length; i++) {
+  for (let j = 0; j < arrayCells[i].length; j++) {
+    if (arrayCells[i][j] === 1) {
+      cells[c].style.background = "white";
+    } else {
+      cells[c].style.background = "black";
+    }
+    c++;
+    cells[c].addEventListener("click", () => {
+      arrayCells[i][j] === 1;
+    });
+    console.log(arrayCells);
+  }
+}
+
+cells[10].style.background = "red";
+// arrayCells[3][1] = 1;
+
+// ----------------------------------------------------------------RealColorFunction-----------------------------------------------------------------
+
+// function colors() {
+//   const cells = document.querySelectorAll("div");
+//   let c = 0;
+//   for (let i = 0; i < arrayCells.length; i++) {
+//     for (let j = 0; j < arrayCells[i].length; j++) {
+//       if (arrayCells[i][j] === 1) {
+//         cells[c].style.background = "white";
+//       } else {
+//         cells[c].style.background = "black";
+//       }
+//       c++;
+//     }
+//   }
+// }
+
+// colors();
+
+//----------------------------------------------------------- assigner coordonnées aux cells --------------------------------------------------------
+
+// j'itere à travers le premier tableau et j'assigne une valeure a chaque élements de chaques rangées
+
 console.log(arrayCells);
 
 let tabArray = [
@@ -218,55 +292,86 @@ let tabArray = [
   [-1, -1],
 ];
 
-let cells1Around = [];
+// -------------------------------------------------Jeu fonctionnel -------------------------------------------------------------------------
 
-let cellsThatWillLive = [];
+// function gameLauncher() {
+//   let cellsThatWillLive = [];
 
-let cellsThatWontChange = [];
+//   // let cellsThatWontChange = [];
 
-let cellsthatWillDie = [];
-// On itère à travers les rangées du tableau principal
-// for (let i = 0; i < arrayCells.length; i++) {
-// On itère à travers chaque élément de chaques rangées
-for (let i = 0; i < 1; i++) {
-  // for (let j = 0; j < arrayCells.length; j++) {
-  // On itère à travers les 8 cellues voisines de notre élément
-  for (let j = 0; j < 1; j++) {
-    for (let t = 0; t < tabArray.length; t++) {
-      // pour chaque itération à travers les voisins on définit le changement sur i et le changement sur j
-      let indexRow = tabArray[t][0];
-      let indexCol = tabArray[t][1];
-      // console.log(indexRow, indexCol);
-      // console.log(arrayCells[i][j]);
-      // On soustrait a i et a j les valeures de t[0] et de t[1], pour trouver leur valeures a chaque itération dans le tabArray;
-      let valueRow = [i] - indexRow;
-      // console.log(valueRow);
-      let valueCol = [j] - indexCol;
-      // console.log(valueCol);
-      // on élimine les cases qui n'existent pas et les cases voisines qui ne seront pas égales a 1
-      if (
-        arrayCells[valueRow] != undefined &&
-        arrayCells[valueRow][valueCol] == 1
-      ) {
-        // on place dans un tableau toutes les cases voisines de notre case qui sont égales a 1;
-        cells1Around.push(arrayCells[valueRow][valueCol]);
-        console.log(cells1Around);
-        // si la longueur du tableau est égale à 3 alors la case que l'on étudie sera placée dans le tableau qui vivra au prochain tour
-        if (cells1Around.length === 3) {
-          cellsThatWillLive.push(arrayCells[i][j]);
-          // si la longueure du tableau est égale à 2 alors la case que l'on étudie sera placée dans le tableau qui mourra au prochain tour
-        } else if (cells1Around.length === 2) {
-          cellsThatWontChange.push(arrayCells[i][j]);
-          // si la longueure du tableau est inférieur à 2 ou supérieure à 3 alors la case que l'on étudie sera placée dans le tableau qui mourra au prochain tour
-        } else if (cells1Around.length < 2 || cells1Around.length > 3) {
-          cellsthatWillDie.push(arrayCells[i][j]);
-        }
-        console.log(arrayCells);
-        // les tableaux me retournent 1 element dans Wont Chnage et un element dans WillDie alors qu'une seule case est analysée
-      }
-    }
-  }
-}
-console.log(cellsThatWillLive);
-console.log(cellsThatWontChange);
-console.log(cellsthatWillDie);
+//   let cellsthatWillDie = [];
+
+//   // On itère à travers les rangées du tableau principal
+//   for (let i = 0; i < arrayCells.length; i++) {
+//     // On itère à travers chaque élément de chaques rangées
+//     // for (let i = 0; i < 1; i++) {
+//     for (let j = 0; j < arrayCells.length; j++) {
+//       let cells1Around = 0;
+//       // On itère à travers les 8 cellues voisines de notre élément
+//       // for (let j = 0; j < 1; j++) {
+//       for (let t = 0; t < tabArray.length; t++) {
+//         // pour chaque itération à travers les voisins on définit le changement sur i et le changement sur j
+//         let indexRow = tabArray[t][0];
+//         let indexCol = tabArray[t][1];
+//         // console.log(indexRow, indexCol);
+//         // console.log(arrayCells[i][j]);
+//         // On soustrait a i et a j les valeures de t[0] et de t[1], pour trouver leur valeures a chaque itération dans le tabArray;
+//         let valueRow = i + indexRow;
+//         // console.log(valueRow);
+//         let valueCol = j + indexCol;
+//         // console.log(valueCol);
+//         // on élimine les cases qui n'existent pas et les cases voisines qui ne seront pas égales a 1
+//         if (
+//           arrayCells[valueRow] != undefined &&
+//           arrayCells[valueRow][valueCol] == 1
+//         ) {
+//           // on place dans un tableau toutes les cases voisines de notre case qui sont égales a 1;
+//           cells1Around++;
+//           // console.log(cells1Around);
+//         }
+//       }
+
+//       if (arrayCells[i][j] === 0 && cells1Around === 3) {
+//         cellsThatWillLive.push([i, j]);
+//       } else if (
+//         arrayCells[i][j] === 1 &&
+//         (cells1Around < 2 || cells1Around > 3)
+//       ) {
+//         cellsthatWillDie.push([i, j]);
+//       }
+//       // // si la longueur du tableau est égale à 3 alors la case que l'on étudie sera placée dans le tableau qui vivra au prochain tour
+//       // if (cells1Around.length === 3) {
+//       //   cellsThatWillLive.push([i, j]);
+//       //   // si la longueure du tableau est inférieur à 2 ou supérieure à 3 alors la case que l'on étudie sera placée dans le tableau qui mourra au prochain tour
+//       // } else if (cells1Around.length === 2) {
+//       //   cellsThatWontChange.push([i, j]);
+//       //   // si la longueure du tableau est égale à 2 alors la case que l'on étudie sera placée dans le tableau qui mourra au prochain tour
+//       // } else if (cells1Around.length < 2 || cells1Around.length > 3) {
+//       //   cellsthatWillDie.push([i, j]);
+//       // }
+//       // // on change les nombre de toutes les cases dans le tableau cellsThatWillLive
+//     }
+//   }
+
+//   // console.log(arrayCells);
+//   for (let w = 0; w < cellsThatWillLive.length; w++) {
+//     var rowLives = cellsThatWillLive[w][0];
+//     var colLives = cellsThatWillLive[w][1];
+//     arrayCells[rowLives][colLives] = 1;
+//   }
+//   for (let d = 0; d < cellsthatWillDie.length; d++) {
+//     var rowDead = cellsthatWillDie[d][0];
+//     var colDead = cellsthatWillDie[d][1];
+//     arrayCells[rowDead][colDead] = 0;
+//   }
+
+//   console.log(arrayCells);
+//   colors();
+// }
+
+// setInterval(gameLauncher, 1000);
+// console.log(arrayCells);
+
+// console.log("live", cellsThatWillLive);
+// console.log("wontchang", cellsThatWontChange);
+// console.log("dead", cellsthatWillDie);
