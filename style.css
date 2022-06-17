@@ -9,7 +9,7 @@
 body {
   width: 100vw;
   height: 100vh;
-  background: #333;
+  background: black;
   font-size: 62.5%;
   overflow: hidden;
 }
@@ -17,8 +17,26 @@ body {
 .gameOfLife {
   width: 350px;
   height: 350px;
-  background: #000;
+  background: black;
   margin: 10rem auto;
   display: flex;
   flex-wrap: wrap;
+}
+
+.btn {
+  display: flex;
+  width: 50%;
+  margin: 2rem auto;
+  justify-content: space-around;
+  align-items: center;
+  background: #333;
+}
+
+button {
+  padding: 1rem 2rem;
+  background: blue;
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
 }
