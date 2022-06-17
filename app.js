@@ -13,10 +13,9 @@ starter.addEventListener("click", () => {
 
 restart.addEventListener("click", () => {
   reset();
-    setInterval(() => {
+    setTimeout(() => {
       stillPlaying = false;
-    }, 1000);
-  
+    }, 1000);  
 });
 
 let arrayCells = [[], [], [], [], [], [], [], [], [], []];
