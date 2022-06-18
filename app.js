@@ -13,13 +13,12 @@ starter.addEventListener("click", () => {
 
 restart.addEventListener("click", () => {
   reset();
-    setTimeout(() => {
-      stillPlaying = false;
-    }, 1000);  
+  setTimeout(() => {
+    stillPlaying = false;
+  }, 1000);
 });
 
 let arrayCells = [[], [], [], [], [], [], [], [], [], []];
-let x = 0;
 let cellIndex = 0;
 for (let i = 0; i < arrayCells.length; i++) {
   x += 1;
@@ -31,24 +30,12 @@ for (let i = 0; i < arrayCells.length; i++) {
     cell.style.border = "1px solid blue";
     cell.id = cellIndex;
     cellIndex++;
-    // console.log(cell.id);
-    // ----------------------------------------------------------------------------------
-    // if (j == 1 || j == 7) {
-    //   arrayCells[i].push(1);
-    // } else if (j == 4 && (x == 5 || x == 4)) {
-    //   arrayCells[i].push(1);
-    // } else {
+
     arrayCells[i].push(0);
     // ----------------------------------------------------------------------------
   }
 }
-// }
 
-// for (let i = 0; i < arrayCells.length; i++){
-//   for (let j = 0; arrayCells[i].length; j++){
-
-//   }
-// }
 // il faut assigner a chaque valeure du tableau la valeure correspondante de la case dans le dom, puis un eventListenerqui cahngera la valeure de cette case dans le tableau;
 
 // créer une boucle ou on fait correspondre chaque cells[c] à chaque arrayCells[i][j];
@@ -181,39 +168,21 @@ function gameLauncher() {
         ) {
           cellsthatWillDie.push([i, j]);
         }
-        // // si la longueur du tableau est égale à 3 alors la case que l'on étudie sera placée dans le tableau qui vivra au prochain tour
-        // if (cells1Around.length === 3) {
-        //   cellsThatWillLive.push([i, j]);
-        //   // si la longueure du tableau est inférieur à 2 ou supérieure à 3 alors la case que l'on étudie sera placée dans le tableau qui mourra au prochain tour
-        // } else if (cells1Around.length === 2) {
-        //   cellsThatWontChange.push([i, j]);
-        //   // si la longueure du tableau est égale à 2 alors la case que l'on étudie sera placée dans le tableau qui mourra au prochain tour
-        // } else if (cells1Around.length < 2 || cells1Around.length > 3) {
-        //   cellsthatWillDie.push([i, j]);
-        // }
-        // // on change les nombre de toutes les cases dans le tableau cellsThatWillLive
       }
-    }
 
-    // console.log(arrayCells);
-    for (let w = 0; w < cellsThatWillLive.length; w++) {
-      var rowLives = cellsThatWillLive[w][0];
-      var colLives = cellsThatWillLive[w][1];
-      arrayCells[rowLives][colLives] = 1;
-    }
-    for (let d = 0; d < cellsthatWillDie.length; d++) {
-      var rowDead = cellsthatWillDie[d][0];
-      var colDead = cellsthatWillDie[d][1];
-      arrayCells[rowDead][colDead] = 0;
-    }
+      for (let w = 0; w < cellsThatWillLive.length; w++) {
+        var rowLives = cellsThatWillLive[w][0];
+        var colLives = cellsThatWillLive[w][1];
+        arrayCells[rowLives][colLives] = 1;
+      }
+      for (let d = 0; d < cellsthatWillDie.length; d++) {
+        var rowDead = cellsthatWillDie[d][0];
+        var colDead = cellsthatWillDie[d][1];
+        arrayCells[rowDead][colDead] = 0;
+      }
 
-    console.log(arrayCells);
-    colors();
+      console.log(arrayCells);
+      colors();
+    }
   }
 }
-// setInterval(gameLauncher, 1000);
-// console.log(arrayCells);
-
-// console.log("live", cellsThatWillLive);
-// console.log("wontchang", cellsThatWontChange);
-// console.log("dead", cellsthatWillDie);
